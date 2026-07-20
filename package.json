@@ -1,0 +1,28 @@
+{
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1",
+    "typescript": "^7.0.2"
+  },
+  "name": "e2e-playwright-ts",
+  "version": "1.0.0",
+  "description": "Projekt zawiera automatyczne testy end-to-end (E2E) napisane z wykorzystaniem **Playwright** oraz **TypeScript**. Został zorganizowany zgodnie ze wzorcem **Page Object Model (POM)**, co ułatwia utrzymanie kodu, jego rozwój oraz ponowne wykorzystanie komponentów.",
+  "main": "index.js",
+  "dependencies": {
+    "playwright": "^1.61.1",
+    "playwright-core": "^1.61.1"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dariuszdx/e2e-Playwright-TS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dariuszdx/e2e-Playwright-TS/issues"
+  },
+  "homepage": "https://github.com/dariuszdx/e2e-Playwright-TS#readme"
+}
