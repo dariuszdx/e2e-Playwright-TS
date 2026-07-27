@@ -230,6 +230,22 @@ Projekt został przygotowany zgodnie z dobrymi praktykami automatyzacji testów:
 - możliwość uruchamiania testów lokalnie oraz w środowisku CI/CD.
 
 ---
+🔐 Konfiguracja pliku `.env`
+
+Projekt wykorzystuje plik **`.env`** do przechowywania danych konfiguracyjnych (np. adresów URL, danych logowania czy kluczy API).
+
+> **Uwaga:** Plik `.env` znajduje się w `.gitignore`, dlatego **nie jest wersjonowany** i **nie zostanie pobrany wraz z repozytorium**.
+
+Po sklonowaniu projektu utwórz własny plik `.env` lub użyj `.env.example`  w katalogu głównym projektu i uzupełnij go odpowiednimi wartościami.
+
+Przykład:
+
+```env
+BASE_URL=https://example.com
+USERNAME=your_username
+PASSWORD=your_password
+```
+Nigdy nie dodawaj do repozytorium pliku `.env` zawierającego poufne dane.
 
 # 📄 Licencja
 
