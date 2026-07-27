@@ -1,18 +1,21 @@
 import { test, expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
+import { RegisterPage } from '../pages/RegisterPage';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+test.beforeEach(async ({ page }) => {
+  await page.goto('/account/register');
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Correct user registration form', async ({ page }) => {
+const registerPage = new RegisterPage(page);
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+const user = {
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  email: faker.internet.email(),
+  password: faker.internet.password(),
+};
+await registerPage.fillForm(user);
+// await registerPage.submitForm();
 });
+
