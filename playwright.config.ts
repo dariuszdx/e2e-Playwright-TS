@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -12,6 +13,12 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  use: {
+    headless: false, // W trybie nagłówkowym (z interfejsem) łatwiej przejść weryfikację
+    launchOptions: {
+      args: ['--disable-blink-features=AutomationControlled'], // Ukrywa automatyzację
+    },
+  },
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,

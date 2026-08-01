@@ -1,12 +1,16 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { RegisterPage } from '../pages/RegisterPage';
+import { waitForDebugger } from 'node:inspector';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/account/register');
 });
 
 test('Correct user registration form', async ({ page }) => {
+  await page.addInitScript(() => {
+    delete (navigator as any).__proto__.webdriver;
+  });
 const registerPage = new RegisterPage(page);
 
 const user = {
@@ -16,6 +20,8 @@ const user = {
   password: faker.internet.password(),
 };
 await registerPage.fillForm(user);
-// await registerPage.submitForm();
+await page.waitForTimeout(1000);
+await registerPage.submitForm();
+await page.waitForTimeout(1000);
 });
 

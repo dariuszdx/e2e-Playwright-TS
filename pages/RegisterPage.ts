@@ -10,11 +10,11 @@ export class RegisterPage {
 
   constructor(page: Page) {
     this.page = page;
-    //Lokatory do poprawy -> Nie działają
-    this.firstNameInput = page.getByLabel('First Name'); 
-    this.lastNameInput = page.getByLabel('Last Name');
-    this.emailInput = page.getByLabel('Email');
-    this.passwordInput = page.getByLabel('Password');
+
+    this.firstNameInput = page.locator('input#first_name')
+    this.lastNameInput = page.locator('input#last_name');
+    this.emailInput = page.locator('input#email');
+    this.passwordInput = page.locator('div#password input');
   }
 
   async fillForm(user: User) {
@@ -22,5 +22,9 @@ export class RegisterPage {
     await this.lastNameInput.fill(user.lastName);
     await this.emailInput.fill(user.email);
     await this.passwordInput.fill(user.password);
+  }
+
+  async submitForm() {
+    await this.page.locator('input[type="submit"][value="Create"]').click({force: true});
   }
 }
