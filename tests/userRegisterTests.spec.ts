@@ -22,6 +22,5 @@ const user = {
 await registerPage.fillForm(user);
 await page.waitForTimeout(1000);
 await registerPage.submitForm();
-await page.waitForTimeout(1000);
 });
 
