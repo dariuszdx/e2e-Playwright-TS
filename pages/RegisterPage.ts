@@ -11,7 +11,7 @@ export class RegisterPage {
   constructor(page: Page) {
     this.page = page;
 
-    this.firstNameInput = page.locator('input#first_name')
+    this.firstNameInput = page.getByRole('textbox', { name: 'Username' })
     this.lastNameInput = page.locator('input#last_name');
     this.emailInput = page.locator('input#email');
     this.passwordInput = page.locator('div#password input');
