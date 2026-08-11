@@ -24,38 +24,17 @@ test.describe("User Login Form", () => {
     await expect(page).toHaveURL(/\/shop\/user\/dd2\/?$/);
   });
 
-  // test("Fail login with invalid password", async ({ page }) => {
-  //   const user = {
-  //     email: process.env.USER_LOGIN!,
-  //     password: "WrongPassword123!",
-  //   };
+  test("Fail login with invalid password", async ({ page }) => {
+    const user = {
+      email: process.env.USER_LOGIN!,
+      password: "WrongPassword123!",
+    };
 
-  //   await loginPage.fillForm(user);
-  //   await loginPage.submitForm();
+    await loginPage.fillForm(user);
+    await loginPage.submitForm();
 
-  //   // Verification: Stay on login page and display error
-  //   await expect(page).toHaveURL(/.*login/);
-  //   await expect(page.locator('.um-notice.err, .woocommerce-error')).toBeVisible();
-  // });
-
-  // test("Fail login with non-existing user", async ({ page }) => {
-  //   const user = {
-  //     email: "nonexistinguser_999@example.com",
-  //     password: "SomePassword123!",
-  //   };
-
-  //   await loginPage.fillForm(user);
-  //   await loginPage.submitForm();
-
-  //   await expect(page).toHaveURL(/.*login/);
-  //   await expect(page.locator('.um-notice.err, .woocommerce-error')).toBeVisible();
-  // });
-
-  // test("Fail login with empty credentials", async ({ page }) => {
-  //   // Submitting form without typing anything
-  //   await loginPage.submitForm();
-
-  //   await expect(page).toHaveURL(/.*login/);
-  //   await expect(page.locator('.um-field-error, .um-notice.err')).toBeVisible();
-  // });
+    
+    await expect(page).toHaveURL(/.*login/);
+    await expect(page.getByText('Password is incorrect. Please')).toBeVisible();
+  });
 });
