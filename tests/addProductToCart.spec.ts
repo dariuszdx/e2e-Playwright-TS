@@ -1,10 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/LoginPage";
 import { LinkPage } from "../pages/LinkPage";
+import { ShopPage } from "../pages/ShopPage";
 
 test.describe("Add product to cart flow", () => {
   let loginPage: LoginPage;
   let linkPage: LinkPage;
+  let shopPage: ShopPage;
 
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
@@ -13,6 +15,7 @@ test.describe("Add product to cart flow", () => {
 
     loginPage = new LoginPage(page);
     linkPage = new LinkPage(page);
+    shopPage = new ShopPage(page);
     await page.goto("login/");
   });
 
@@ -30,6 +33,10 @@ test.describe("Add product to cart flow", () => {
 
     await test.step("Click on shop link", async () => {
       await linkPage.shopPage.click();
+      await expect(page).toHaveURL(/.*shop/);
     });
+    await test.step("Click on product and add to the cart", async () => {
+        await shopPage.addProductToCart('Album');
   });
 });
+})

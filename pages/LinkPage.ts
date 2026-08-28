@@ -16,8 +16,7 @@ export class LinkPage {
   constructor(page: Page) {
     this.page = page;
     this.homepage = page.getByRole('link', { name: 'Homepage' })
-    this.homepage = page.getByText('Shop'),
-    // this.shopPage = page.getByText('link', { name: 'Shop' })
+    this.shopPage = page.locator('#menu-item-126').getByRole('link', { name: 'Shop' });
     this.memberspage = page.getByRole('link', { name: 'Members' })
     this.loginpage = page.getByRole('link', { name: 'Login' })
     this.userpage = page.getByRole('link', { name: 'User' })
