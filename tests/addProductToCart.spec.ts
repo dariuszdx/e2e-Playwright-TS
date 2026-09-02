@@ -19,7 +19,7 @@ test.describe("Add product to cart flow", () => {
     await page.goto("login/");
   });
 
-  test("User adds product to cart", async ({ page }) => {
+  test("User adds product to cartt", async ({ page }) => {
     await test.step("User login", async () => {
       const user = {
         email: process.env.USER_LOGIN!,
