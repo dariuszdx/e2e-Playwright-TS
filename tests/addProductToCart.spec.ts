@@ -28,15 +28,23 @@ test.describe("Add product to cart flow", () => {
 
       await loginPage.fillForm(user);
       await loginPage.submitForm();
-      await expect(page).toHaveURL(/\/shop\/user\/dd2\/?$/);
+
+      try {
+        await expect(page).toHaveURL(/\/shop\/user\/dd2\/?$/);
+      } catch (error) {
+        // Zapisz zrzut ekranu do folderu test-results, jeśli logowanie nie przeszło
+        await page.screenshot({ path: 'test-results/login-failure.png', fullPage: true });
+        throw error;
+      }
     });
 
     await test.step("Click on shop link", async () => {
       await linkPage.shopPage.click();
       await expect(page).toHaveURL(/.*shop/);
     });
+    
     await test.step("Click on product and add to the cart", async () => {
-        await shopPage.addProductToCart('Album');
+      await shopPage.addProductToCart('Album');
+    });
   });
 });
-})
