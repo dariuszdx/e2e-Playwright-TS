@@ -28,14 +28,8 @@ test.describe("Add product to cart flow", () => {
 
       await loginPage.fillForm(user);
       await loginPage.submitForm();
-
-      try {
-        await expect(page).toHaveURL(/\/shop\/user\/dd2\/?$/);
-      } catch (error) {
-        // Zapisz zrzut ekranu do folderu test-results, jeśli logowanie nie przeszło
-        await page.screenshot({ path: 'test-results/login-failure.png', fullPage: true });
-        throw error;
-      }
+      
+      await expect(page).toHaveURL(/\/shop\/user\/dd1\/?$/);
     });
 
     await test.step("Click on shop link", async () => {

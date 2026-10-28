@@ -29,6 +29,11 @@ export class RegisterPage {
     this.phoneNumberInput = page.getByRole('textbox', { name: 'Phone Number' })
   }
 
+  async goto() {
+    await this.page.goto('register/', { waitUntil: 'domcontentloaded' });
+    await this.userNameInput.waitFor({ state: 'visible' });
+  }
+
   async fillForm(user: User) {
     await this.userNameInput.fill(user.userName)
     await this.firstNameInput.fill(user.firstName); 

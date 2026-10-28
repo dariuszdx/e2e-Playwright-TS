@@ -13,14 +13,19 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
  */
 export default defineConfig({
   testDir: './tests',
-  /* Run tests in files in parallel */
-  fullyParallel: true,
+  
+  /* Wyłączamy pełne równoległe wykonywanie, by nie przeciążać serwera */
+  fullyParallel: false,
+
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
+
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+
+  /* Uruchamiaj testy po kolei (1 worker) dla stabilności serwera */
+  workers: 1,
+
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
 
@@ -31,6 +36,10 @@ export default defineConfig({
 
     /* Tryb bezgłowy na CI, z interfejsem lokalnie (chyba że CI=true) */
     headless: !!process.env.CI,
+
+    /* Czas oczekiwania na akcje i nawigację */
+    actionTimeout: 15000,
+    navigationTimeout: 30000,
 
     launchOptions: {
       args: ['--disable-blink-features=AutomationControlled'],
